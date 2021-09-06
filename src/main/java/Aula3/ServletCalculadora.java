@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletNomeSobrenome
+ * Servlet implementation class ServletCalculadora
  */
-@WebServlet("/ServletNomeSobrenome")
-public class ServletNomeSobrenome extends HttpServlet {
+@WebServlet("/ServletCalculadora")
+public class ServletCalculadora extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletNomeSobrenome() {
+    public ServletCalculadora() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +36,14 @@ public class ServletNomeSobrenome extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Nome = request.getParameter("Nome");
-		String Sobrenome = request.getParameter("Sobrenome");
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("Olá<h3>"+Nome+" "+Sobrenome + " Tudo bem? </h3>");
-		out.close();
+		float n1 = Float.parseFloat(request.getParameter("num1"));  
+        float n2 = Float.parseFloat(request.getParameter("num2"));  
+        String resp = "" + (n1 + n2);  
+        request.setAttribute("resp", resp);  
+        PrintWriter out = response.getWriter();
+        out.printf("A soma dos valores é: "+ resp+ " </h3>");
+		out.close();	
+		
 	}
 
 }
